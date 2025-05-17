@@ -1,4 +1,5 @@
 require "sprite.rocket"
+require "sprite.triangles"
 
 canvas_width = 1920
 canvas_height = 1080
@@ -15,15 +16,20 @@ function love.load()
     love.graphics.setDefaultFilter("nearest", "nearest")
     canvas = love.graphics.newCanvas(canvas_width, canvas_height)
     rocket:load()
+    triangles:load()
 end
 
 function love.update(dt)
+    triangles:update(dt)
     rocket:update(dt)
 end
 
 function love.draw()
     love.graphics.setCanvas(canvas)
     love.graphics.clear(0.17, 0.17, 0.17)
+    rocket:draw_smokes()
+    rocket:draw_fires()
+    triangles:draw()
     rocket:draw()
     love.graphics.setCanvas()
     love.graphics.clear()

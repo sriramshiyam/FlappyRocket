@@ -29,6 +29,7 @@ function rocket:update(dt)
 
     local cross_product = vector1.x * vector2.y - vector2.x * vector1.y
     self.offset = -500 * cross_product
+    triangles.offset = self.offset
     self:update_smokes(dt)
     self:update_fires(dt)
 end
@@ -120,8 +121,6 @@ function rocket:update_fires(dt)
 end
 
 function rocket:draw()
-    self:draw_smokes()
-    self:draw_fires()
     love.graphics.draw(self.texture, self.position.x, self.position.y, self.rotation * math.pi / 180, 1, 1,
         self.texture:getWidth() / 2, self.texture:getHeight() * 0.9)
 end
